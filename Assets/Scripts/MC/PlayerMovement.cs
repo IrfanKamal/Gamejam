@@ -5,9 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float knockTime;
     Rigidbody2D rb2D;
     Animator animator;
     Vector2 movement;
+
+    Coroutine crKnocked = null;
+    private bool canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (movement != Vector2.zero)
+        if (movement != Vector2.zero && canMove)
         {
             animator.SetBool("Running", true);
             rb2D.MovePosition(rb2D.position + movement * moveSpeed * Time.fixedDeltaTime);
@@ -36,5 +40,27 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             animator.SetBool("Running", false);
+    }
+
+    public void KnockPlayer(float knockback, Vector2 enemy)
+    {
+        if (crKnocked != null)
+            StopCoroutine(crKnocked);
+        Vector2 direction = new Vector2(transform.position.x - enemy.x, transform.position.y - enemy.y).normalized;
+        crKnocked = StartCoroutine(KnockingPlayer(knockback, direction));
+    }
+
+    public IEnumerator KnockingPlayer(float knockback, Vector2 direction)
+    {
+        canMove = false;
+        float timeKnocked = knockTime;
+        while (timeKnocked > 0f)
+        {
+            timeKnocked -= Time.fixedDeltaTime;
+            rb2D.MovePosition(rb2D.position + direction * knockback * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+        canMove = true;
+        crKnocked = null;
     }
 }

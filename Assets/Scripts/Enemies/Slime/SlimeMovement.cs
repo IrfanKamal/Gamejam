@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class SlimeMovement : MonoBehaviour
 {
-    public float damage, knockBack, stopDistance;
+    public float knockBack, stopDistance;
     public float moveSpeed, moveTime, movePause;
+    public float knockTime = 0.3f;
+    public int damage;
 
     Transform player;
     Rigidbody2D rb2D;
     Animator animator;
     Vector2 direction = Vector2.zero;
+    Coroutine crKnockback = null;
     private float newMoveSpeed;
     // Start is called before the first frame update
     void Start()
@@ -57,6 +60,39 @@ public class SlimeMovement : MonoBehaviour
     {
         animator.ResetTrigger("EndJump");
         yield return new WaitForSeconds(movePause);
+        StartJump();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Debug.Log("Enter");
+        if (collision.CompareTag("Player"))
+        {
+            //Debug.Log("Enter");
+            collision.gameObject.GetComponent<Health>().GetDamaged(damage, knockBack, transform.position);
+        }
+    }
+
+    public void KnockBacked(float amount, Vector2 from)
+    {
+        if (crKnockback != null)
+            StopCoroutine(CrKnockBacked(amount, from));
+        StopAllCoroutines();
+        animator.Play("Idle");
+        crKnockback = StartCoroutine(CrKnockBacked(amount, from));
+    }
+
+    public IEnumerator CrKnockBacked(float amount, Vector2 from)
+    {
+        Vector2 direction = ((Vector2)transform.position - from).normalized;
+        float timeKnockback = knockTime;
+        while (timeKnockback > 0f)
+        {
+            timeKnockback -= Time.fixedDeltaTime;
+            rb2D.MovePosition(rb2D.position + direction * amount * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+        crKnockback = null;
         StartJump();
     }
 }
