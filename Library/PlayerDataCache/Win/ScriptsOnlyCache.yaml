@@ -3,12 +3,22 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - AdaptiveSorting
     - Bantal
+    - Door
+    - EnemySpawner
+    - GameManager
     - Guling
     - Health
+    - Hole
     - PlayerMovement
     - Sauce
     - SauceBullet
     - SlimeMovement
+    Cinemachine.dll:
+    - Cinemachine.CinemachineBrain
+    - Cinemachine.CinemachineConfiner
+    - Cinemachine.CinemachineFramingTransposer
+    - Cinemachine.CinemachinePipeline
+    - Cinemachine.CinemachineVirtualCamera
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -52,7 +62,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/Main.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -79,6 +89,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -96,11 +110,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2146}
     - Class: 114
+      Script: {instanceID: 2502}
+    - Class: 114
       Script: {instanceID: 2552}
+    - Class: 114
+      Script: {instanceID: 2568}
+    - Class: 114
+      Script: {instanceID: 2628}
     - Class: 114
       Script: {instanceID: 2718}
     - Class: 114
       Script: {instanceID: 2762}
+    - Class: 114
+      Script: {instanceID: 2796}
     - Class: 114
       Script: {instanceID: 2854}
     - Class: 114
@@ -114,6 +136,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3632}
     - Class: 114
+      Script: {instanceID: 3724}
+    - Class: 114
       Script: {instanceID: 4140}
     - Class: 114
       Script: {instanceID: 4460}
@@ -123,6 +147,14 @@ ScriptsOnlyBuild:
       Script: {instanceID: 4814}
     - Class: 114
       Script: {instanceID: 5130}
+    - Class: 114
+      Script: {instanceID: 23888}
+    - Class: 114
+      Script: {instanceID: 23896}
+    - Class: 114
+      Script: {instanceID: 25012}
+    - Class: 114
+      Script: {instanceID: 25864}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -264,7 +296,7 @@ ScriptsOnlyBuild:
     className: CinemachineCameraOffset
   - hash:
       serializedVersion: 2
-      Hash: 4685c4b0b1c890327cf57190eb49a3b3
+      Hash: 0a6887e1269310704451b0f6b37966b4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Health
@@ -288,7 +320,7 @@ ScriptsOnlyBuild:
     className: CinemachineBlenderSettings
   - hash:
       serializedVersion: 2
-      Hash: f5f86e854196ccf4af659183cfc08a7e
+      Hash: cde8d5ae7ad7b41ac758e68d00dc6ea4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Sauce
@@ -438,7 +470,7 @@ ScriptsOnlyBuild:
     className: CinemachineHardLookAt
   - hash:
       serializedVersion: 2
-      Hash: b87b671a8f5ce0361756b633e1faa7ab
+      Hash: b30085e88f5e0bb98d3f4dfdf97e8c4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -762,7 +794,7 @@ ScriptsOnlyBuild:
     className: CinemachineTrackedDolly
   - hash:
       serializedVersion: 2
-      Hash: a46c2e06d2e58043df7d71ad796b49f7
+      Hash: 55422b017b8c32c391d2fb74ed5011fa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Bantal
@@ -906,7 +938,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 07028ae27095f672a4ca31baa7e31bf5
+      Hash: 8db6cf98073382ba129c37deb3dd2d58
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Guling
@@ -1000,7 +1032,31 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: ec4b5951dbd3b3e4607b93036839ec97
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemySpawner
+  - hash:
+      serializedVersion: 2
+      Hash: bbfdfa2a40be4cc6677134c14174933c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Hole
+  - hash:
+      serializedVersion: 2
+      Hash: 0f7ddd85314371b385bdd4f6c43e375f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Door
   platform: 5
   scenePathNames:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/Main.unity
   playerPath: E:/Unity Builds/Game Jam/Game Jam.exe

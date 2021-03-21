@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     Coroutine crKnocked = null;
     private bool canMove = true;
 
+    public AudioSource walkingSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (movement != Vector2.zero && canMove)
         {
             animator.SetBool("Running", true);
+            walkingSound.Play();
             rb2D.MovePosition(rb2D.position + movement * moveSpeed * Time.fixedDeltaTime);
             if (transform.localScale.x != movement.x * -1f && movement.x != 0f)
             {
@@ -39,7 +42,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else
+        {
             animator.SetBool("Running", false);
+            walkingSound.Stop();
+        }
     }
 
     public void KnockPlayer(float knockback, Vector2 enemy)
@@ -63,4 +69,6 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         crKnocked = null;
     }
+
+
 }

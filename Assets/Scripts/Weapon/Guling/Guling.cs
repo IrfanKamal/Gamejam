@@ -10,6 +10,7 @@ public class Guling : Weapon
     Coroutine crDownTime, crHitbox;
     PolygonCollider2D hitbox;
     float attackCdTime = 0f;
+    public AudioSource attackSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +67,7 @@ public class Guling : Weapon
         if (collision.CompareTag("Enemy"))
         {
             collision.GetComponent<Health>().GetDamaged(damage,knockback,transform.position);
+            attackSound.Play();
         }
     }
 }

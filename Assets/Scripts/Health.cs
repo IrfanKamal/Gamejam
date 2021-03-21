@@ -8,10 +8,10 @@ public class Health : MonoBehaviour
     public int totalHealth;
     public float damagedCd = 0f;
 
-    private int currentHealth;
+    [HideInInspector]public int currentHealth;
     private bool canBeDamaged = true;
 
-    public UnityEvent<int> onHealthChange;
+    public UnityEvent<int, int> onHealthChange;
     public UnityEvent<float, Vector2> onDamaged;
     public UnityEvent onDeath;
 
@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
 
     public void GetDamaged(int damage, float knockback, Vector2 enemy)
     {
-        Debug.Log("Enter");
+        //Debug.Log("Enter");
         if (canBeDamaged)
         {
             HealthChange(-damage);
@@ -35,11 +35,16 @@ public class Health : MonoBehaviour
     public void HealthChange(int amount)
     {
         currentHealth += amount;
-        onHealthChange?.Invoke(currentHealth);
+        onHealthChange?.Invoke(currentHealth, totalHealth);
         if (currentHealth <= 0)
         {
-            onDeath?.Invoke();
+            Killed();
         }
+    }
+
+    public void Killed()
+    {
+        onDeath?.Invoke();
     }
 
     IEnumerator CrDamagedCD()

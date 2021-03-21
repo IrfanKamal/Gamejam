@@ -22,6 +22,7 @@ public class SlimeMovement : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         StartJump();
+        GetComponent<Health>().onDeath.AddListener(GameManager.gm.EnemyKilled);
     }
 
     void StartJump()
@@ -94,5 +95,10 @@ public class SlimeMovement : MonoBehaviour
         }
         crKnockback = null;
         StartJump();
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }

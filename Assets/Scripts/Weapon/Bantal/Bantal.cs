@@ -13,6 +13,7 @@ public class Bantal : Weapon
     Animator animator;
     Transform player;
     SpriteRenderer sprite;
+    public AudioSource attackSound, shieldSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,7 +81,10 @@ public class Bantal : Weapon
             if (currentDamage == 0)
             {
                 canAtttack = true;
+                shieldSound.Play();
             }
+            else
+                attackSound.Play();
         }
     }
 }

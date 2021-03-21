@@ -8,9 +8,10 @@ public class Sauce : Weapon
     public float chargeTime;
     public int bulletTotal;
     public float angleOffset;
-    public Transform targetAngle;
 
     private int currentBullet;
+
+    public AudioSource attackSound;
 
     Animator animator;
     Coroutine crCharging = null;
@@ -33,6 +34,7 @@ public class Sauce : Weapon
             if (canAtttack)
             {
                 Attack(mousePosition);
+                attackSound.Play();
             }
             else
             {
